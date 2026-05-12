@@ -6,6 +6,19 @@ app.get('/', (req, res) => {
   res.json({ message: 'Weather API - Welcome!' });
 });
 
+// Nouvel endpoint météo
+app.get('/weather/:city', (req, res) => {
+  const city = req.params.city;
+  // Dans un cas réel, nous appellerions une API météo externe
+  const mockWeatherData = {
+    city: city,
+    temperature: Math.floor(Math.random() * 30),
+    conditions: ['Sunny', 'Cloudy', 'Rainy', 'Windy'][Math.floor(Math.random() * 4)],
+    humidity: Math.floor(Math.random() * 100)
+  };
+  res.json(mockWeatherData);
+});
+
 // Only start the server if this file is run directly
 if (require.main === module) {
   app.listen(port, () => {
